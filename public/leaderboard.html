@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>婚禮跑酷大挑戰 - 即時排行榜</title>
+  <link rel="stylesheet" href="leaderboard.css">
+</head>
+<body>
+  <div class="leaderboard-container">
+    <header class="leaderboard-header">
+      <h1 class="title">🏆 婚禮跑酷大挑戰 🏆</h1>
+      <p class="subtitle">即時排行榜</p>
+      <div class="stats-bar">
+        <span class="stat">
+          <span class="stat-icon">👥</span>
+          在場玩家: <strong id="online-count">0</strong> 人
+        </span>
+        <span class="stat">
+          <span class="stat-icon">🏃</span>
+          遊戲中: <strong id="playing-count">0</strong> 人
+        </span>
+        <span class="stat">
+          <span class="stat-icon">🔥</span>
+          最高分: <strong id="top-score">0</strong>
+        </span>
+      </div>
+    </header>
+
+    <main class="leaderboard-main">
+      <div class="leaderboard-list" id="leaderboard-list">
+        <div class="empty-state">
+          <p class="empty-icon">🎮</p>
+          <p class="empty-text">等待玩家加入...</p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="leaderboard-footer">
+      <p>婚禮跑酷大挑戰 ❤️ 由 Hermes Agent 開發</p>
+    </footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="leaderboard.js"></script>
+</body>
+</html>

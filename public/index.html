@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>婚禮跑酷大挑戰</title>
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <!-- 畫面 1: 輸入名字 -->
+  <div id="name-screen" class="screen active">
+    <div class="content">
+      <h1 class="title">🏃 婚禮跑酷大挑戰 🏃</h1>
+      <p class="subtitle">歡迎參加！請輸入你的名字</p>
+      <input type="text" id="name-input" placeholder="輸入你的名字..." maxlength="10" autocomplete="off">
+      <button id="start-btn" class="btn">開始遊戲 ▶</button>
+      <p class="hint">掃描 QR Code 即可遊玩！</p>
+    </div>
+  </div>
+
+  <!-- 畫面 2: 遊戲畫面 -->
+  <div id="game-screen" class="screen">
+    <canvas id="game-canvas"></canvas>
+    <div id="game-hud">
+      <div id="hud-score">分數: 0</div>
+      <div id="hud-best">最高: 0</div>
+    </div>
+    <div id="game-instructions">點擊/觸控螢幕跳躍！</div>
+  </div>
+
+  <!-- 畫面 3: 結果畫面 -->
+  <div id="result-screen" class="screen">
+    <div class="content">
+      <h1 class="title">遊戲結束！</h1>
+      <div id="final-score" class="final-score">0</div>
+      <p class="score-label">分數</p>
+      <div id="final-rank" class="final-rank">排名第 --</div>
+      <p class="best-score-label">你的最高分: <span id="best-score">0</span></p>
+      <button id="restart-btn" class="btn">再玩一次 🔄</button>
+      <button id="share-btn" class="btn btn-secondary">分享成績 📤</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
