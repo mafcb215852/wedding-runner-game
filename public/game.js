@@ -129,6 +129,20 @@
     screen.classList.add('active');
   }
 
+  // ===== 全螢幕 =====
+  function requestFullscreen() {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      // Safari / iOS
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      // IE11
+      elem.msRequestFullscreen();
+    }
+  }
+
   // ===== 遊戲開始 =====
   function startGame() {
     playerName = nameInput.value.trim() || `玩家${Math.floor(Math.random() * 9999)}`;
@@ -142,6 +156,9 @@
     // 切換畫面
     showScreen(gameScreen);
     gameInstructions.style.display = 'block';
+    
+    // 請求全螢幕
+    requestFullscreen();
     
     // 開始遊戲
     gameRunning = true;
