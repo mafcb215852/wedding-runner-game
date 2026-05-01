@@ -103,6 +103,7 @@ fly deploy
 |------|------|
 | 🎮 **遊戲頁面** | [https://wedding-runner-game.onrender.com](https://wedding-runner-game.onrender.com) |
 | 🏆 **排行榜頁面** | [https://wedding-runner-game.onrender.com/leaderboard.html](https://wedding-runner-game.onrender.com/leaderboard.html) |
+| **QD CODE** | | [https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://wedding-runner-game.onrender.com](https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://wedding-runner-game.onrender.com)|
 
 ---
 
