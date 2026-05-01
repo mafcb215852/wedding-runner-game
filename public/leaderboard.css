@@ -65,8 +65,11 @@ body {
 /* 排行榜主區域 */
 .leaderboard-main {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: hidden;
   padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .leaderboard-list {
@@ -81,9 +84,10 @@ body {
   align-items: center;
   background: rgba(255,255,255,0.08);
   border-radius: 12px;
-  padding: 12px 20px;
+  padding: 10px 18px;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  flex-shrink: 0;
 }
 
 .rank-item:hover {
