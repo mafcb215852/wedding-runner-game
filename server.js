@@ -95,12 +95,30 @@ io.on('connection', (socket) => {
     socket.emit('leaderboard:update', getLeaderboard());
   });
 
-  // 斷線處理
+  // 斷線處理（不立即刪除，保留 5 分鐘）
   socket.on('disconnect', () => {
     console.log(`[-] 玩家斷線: ${socket.id}`);
-    players.delete(socket.id);
+    const player = players.get(socket.id);
+    if (player) {
+      player.gameStatus = 'offline';
+      player.disconnectedAt = Date.now();
+    }
     io.emit('leaderboard:update', getLeaderboard());
     io.emit('stats:update', { onlinePlayers: players.size });
+  });
+
+  // 清空排行榜（需要權限驗證）
+  socket.on('leaderboard:clear', (data) => {
+    const { password } = data;
+    if (password === 'wedding2024') {
+      players.clear();
+      console.log('[!] 排行榜已清空');
+      io.emit('leaderboard:update', getLeaderboard());
+      io.emit('stats:update', { onlinePlayers: 0 });
+      socket.emit('leaderboard:cleared');
+    } else {
+      socket.emit('leaderboard:clear:error', '密碼錯誤');
+    }
   });
 });
 
@@ -124,6 +142,19 @@ function getLeaderboard() {
       online: p.online
     }));
 }
+
+// 清理超過 5 分鐘的斷線玩家
+setInterval(() => {
+  const now = Date.now();
+  for (const [id, player] of players.entries()) {
+    if (player.gameStatus === 'offline' && player.disconnectedAt) {
+      if (now - player.disconnectedAt > 5 * 60 * 1000) {
+        players.delete(id);
+        console.log(`[!] 清理斷線玩家: ${player.name}`);
+      }
+    }
+  }
+}, 60 * 1000); // 每分鐘檢查一次
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, '0.0.0.0', () => {

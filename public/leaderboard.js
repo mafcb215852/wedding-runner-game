@@ -11,6 +11,7 @@
   const onlineCount = document.getElementById('online-count');
   const playingCount = document.getElementById('playing-count');
   const topScore = document.getElementById('top-score');
+  const clearBtn = document.getElementById('clear-btn');
 
   // 初始化
   function init() {
@@ -34,6 +35,28 @@
       console.log('[Leaderboard] 定期請求排行榜...');
       socket.emit('leaderboard:request');
     }, 5000);
+
+    // 清空排行榜按鈕
+    clearBtn.addEventListener('click', () => {
+      const password = prompt('請輸入密碼以清空排行榜：');
+      if (password) {
+        socket.emit('leaderboard:clear', { password });
+      }
+    });
+
+    // 監聽清空結果
+    socket.on('leaderboard:cleared', () => {
+      console.log('[Leaderboard] 排行榜已清空');
+      leaderboardData = [];
+      renderLeaderboard();
+      updateStats({ onlinePlayers: 0 });
+      alert('✅ 排行榜已清空！');
+    });
+
+    socket.on('leaderboard:clear:error', (message) => {
+      console.error('[Leaderboard] 清空失敗:', message);
+      alert('❌ ' + message);
+    });
   }
 
   // 更新統計
