@@ -1,0 +1,17 @@
+{
+  "name": "wedding-runner-game",
+  "version": "1.0.0",
+  "description": "Wedding Runner Game - Real-time multiplayer runner game for wedding events",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2"
+  },
+  "keywords": ["wedding", "game", "runner", "leaderboard"],
+  "author": "",
+  "license": "ISC"
+}
