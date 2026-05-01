@@ -89,14 +89,22 @@ fly deploy
 ### 現場操作
 
 1. **連接投影機**：筆電接 HDMI 到投影機
-2. **開啟排行榜**：瀏覽器開啟 `leaderboard.html`
-3. **展開全螢幕**：按 F11 全螢幕顯示
-4. **產生 QR Code**：
-   ```bash
-   # 使用線上工具產生
-   # URL: https://your-app.onrender.com
-   ```
-5. **放置 QR Code**：放在桌卡、入口海報、投影輪播
+2. **開啟排行榜**：瀏覽器開啟下方網址並按 F11 全螢幕
+3. **產生 QR Code**：
+   - 直接下載：[點擊下載 QR Code](https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https://wedding-runner-game.onrender.com)
+   - 或直接列印下方連結
+4. **放置 QR Code**：放在桌卡、入口海報、投影輪播
+
+---
+
+### 🔗 重要網址
+
+| 頁面 | 網址 |
+|------|------|
+| 🎮 **遊戲頁面** | [https://wedding-runner-game.onrender.com](https://wedding-runner-game.onrender.com) |
+| 🏆 **排行榜頁面** | [https://wedding-runner-game.onrender.com/leaderboard.html](https://wedding-runner-game.onrender.com/leaderboard.html) |
+
+---
 
 ### 備用方案
 
