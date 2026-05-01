@@ -118,22 +118,25 @@ body {
 
 #game-hud {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
+  top: 12px;
+  left: 12px;
+  right: 12px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   z-index: 5;
   pointer-events: none;
 }
 
 #hud-score, #hud-best {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 1.1em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85em;
   font-weight: bold;
+  white-space: nowrap;
+  line-height: 1.4;
 }
 
 #game-instructions {
@@ -195,4 +198,19 @@ body {
   .title { font-size: 2.5em; }
   .subtitle { font-size: 1.3em; }
   .final-score { font-size: 5em; }
+}
+
+/* 手機版計分框 - 合併成單一排 */
+@media (max-width: 480px) {
+  #game-hud {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    justify-content: center;
+    gap: 8px;
+  }
+  #hud-score, #hud-best {
+    font-size: 0.75em;
+    padding: 3px 8px;
+  }
 }
