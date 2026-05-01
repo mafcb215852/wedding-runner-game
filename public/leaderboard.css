@@ -80,6 +80,7 @@ body {
   gap: 8px;
   flex: 1;
   overflow-y: auto;
+  min-width: 0;
 }
 
 /* 排行榜項目 */
@@ -93,6 +94,7 @@ body {
   border: 2px solid transparent;
   flex-shrink: 0;
   min-width: 0;
+  width: 100%;
   gap: 10px;
 }
 
@@ -176,6 +178,9 @@ body {
 .player-status {
   font-size: 0.85em;
   color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .player-status.online {
@@ -187,10 +192,10 @@ body {
   font-weight: bold;
   color: #ffd700;
   margin-left: 15px;
-  min-width: 60px;
-  max-width: 120px;
+  min-width: 50px;
+  max-width: 100px;
   text-align: right;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .score-bar {
@@ -298,9 +303,11 @@ body {
   .subtitle { font-size: 1em; }
   .stats-bar { gap: 10px; }
   .stat { font-size: 0.9em; padding: 6px 12px; }
-  .rank { width: 40px; height: 40px; font-size: 1.2em; }
+  .rank { width: 40px; height: 40px; font-size: 1.2em; min-width: 40px; }
   .player-name { font-size: 1.1em; }
-  .score { font-size: 1.4em; min-width: 80px; }
+  .score { font-size: 1.4em; min-width: 45px; max-width: 80px; }
+  .rank-item { padding: 8px 12px; gap: 6px; }
+  .rank-item .score { margin-left: 8px; }
 }
 
 @media (min-width: 1200px) {
