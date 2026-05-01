@@ -65,7 +65,8 @@ body {
 /* 排行榜主區域 */
 .leaderboard-main {
   flex: 1;
-  overflow-y: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding: 10px 0;
   display: flex;
   flex-direction: column;
