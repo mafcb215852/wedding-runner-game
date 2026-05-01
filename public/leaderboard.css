@@ -10,6 +10,7 @@ body {
   color: white;
   min-height: 100vh;
   overflow: hidden;
+  overflow-x: hidden;
 }
 
 .leaderboard-container {
@@ -19,6 +20,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 /* 標題區 */
@@ -90,6 +92,8 @@ body {
   transition: all 0.3s ease;
   border: 2px solid transparent;
   flex-shrink: 0;
+  min-width: 0;
+  gap: 10px;
 }
 
 .rank-item:hover {
@@ -127,6 +131,7 @@ body {
   border-radius: 50%;
   margin-right: 15px;
   flex-shrink: 0;
+  min-width: 50px;
 }
 
 .rank-1 {
@@ -154,6 +159,8 @@ body {
 
 .player-info {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .player-name {
@@ -161,6 +168,9 @@ body {
   font-weight: bold;
   color: white;
   margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .player-status {
@@ -177,8 +187,10 @@ body {
   font-weight: bold;
   color: #ffd700;
   margin-left: 15px;
-  min-width: 100px;
+  min-width: 60px;
+  max-width: 120px;
   text-align: right;
+  flex-shrink: 0;
 }
 
 .score-bar {
