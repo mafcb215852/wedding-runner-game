@@ -67,13 +67,16 @@ body {
   flex: 1;
   overflow: hidden;
   padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .leaderboard-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 100%;
+  flex: 1;
   overflow-y: auto;
 }
 
