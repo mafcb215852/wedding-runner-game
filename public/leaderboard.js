@@ -30,11 +30,7 @@
       updateStats(data);
     });
 
-    // 每 5 秒重新請求排行榜
-    setInterval(() => {
-      console.log('[Leaderboard] 定期請求排行榜...');
-      socket.emit('leaderboard:request');
-    }, 5000);
+    // 移除定時輪詢，改為由伺服器主動推送分數更新
 
     // 清空排行榜按鈕
     clearBtn.addEventListener('click', () => {
