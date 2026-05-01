@@ -19,16 +19,19 @@
 
     // 監聽事件
     socket.on('leaderboard:update', (data) => {
+      console.log('[Leaderboard] 收到更新:', data);
       leaderboardData = data;
       renderLeaderboard();
     });
 
     socket.on('stats:update', (data) => {
+      console.log('[Stats] 收到更新:', data);
       updateStats(data);
     });
 
     // 每 5 秒重新請求排行榜
     setInterval(() => {
+      console.log('[Leaderboard] 定期請求排行榜...');
       socket.emit('leaderboard:request');
     }, 5000);
   }
@@ -43,7 +46,6 @@
     const top = leaderboardData.length > 0 ? leaderboardData[0].score : 0;
     topScore.textContent = top;
   }
-
   // 渲染排行榜
   function renderLeaderboard() {
     if (leaderboardData.length === 0) {

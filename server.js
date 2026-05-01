@@ -104,17 +104,24 @@ io.on('connection', (socket) => {
   });
 });
 
-// 取得排行前 20 名
+// 取得排行前 20 名（合併當前分數與最高分）
 function getLeaderboard() {
   return [...players.values()]
-    .filter(p => p.bestScore > 0)
-    .sort((a, b) => b.bestScore - a.bestScore)
+    .map(p => ({
+      name: p.name,
+      score: Math.max(p.score, p.bestScore),
+      bestScore: p.bestScore,
+      currentScore: p.score,
+      online: p.gameStatus === 'playing',
+      gameStatus: p.gameStatus
+    }))
+    .sort((a, b) => b.score - a.score)
     .slice(0, 20)
     .map((p, i) => ({
       rank: i + 1,
       name: p.name,
-      score: p.bestScore,
-      online: p.gameStatus === 'playing'
+      score: p.score,
+      online: p.online
     }));
 }
 

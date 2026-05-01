@@ -670,6 +670,10 @@
     resetGame();
     showScreen(gameScreen);
     gameInstructions.style.display = 'block';
+    
+    // 請求全螢幕
+    requestFullscreen();
+    
     gameRunning = true;
     lastScoreUpdate = 0;
     gameLoop();
