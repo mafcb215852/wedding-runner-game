@@ -623,9 +623,9 @@
   }
 
   function checkTimer() {
-    const elapsed = (Date.now() - lastTimeUpdate) / 1000;
+    const elapsed = (Date.now() - gameStartTime) / 1000;
     const remaining = Math.max(0, Math.ceil(timeLimit - elapsed));
-    if (remaining <= 0) {
+    if (remaining <= 0 && timeRemaining > 0) {
       timeRemaining = 0;
       gameOver();
       return;
