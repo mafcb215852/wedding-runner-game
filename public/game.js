@@ -68,6 +68,11 @@
   let score = 0;
   let distanceScore = 0;
 
+  // 倒數計時
+  let timeLimit = 45;
+  let timeRemaining = 45;
+  let lastTimeUpdate = 0;
+
   // ===== 初始化 =====
   function init() {
     canvas = gameCanvas;
@@ -182,6 +187,10 @@
     distanceScore = 0;
     lastScoreUpdate = 0;
     hearts = [];
+
+    // 重置倒數計時
+    timeRemaining = timeLimit;
+    lastTimeUpdate = Date.now();
   }
 
   // ===== 遊戲主循環 =====
@@ -196,6 +205,12 @@
     if (now - lastScoreUpdate > 500) {
       socket.emit('score:update', { score: score });
       lastScoreUpdate = now;
+    }
+
+    // 每 100ms 更新倒數計時 HUD
+    if (now - lastTimeUpdate >= 100) {
+      updateTimerDisplay();
+      lastTimeUpdate = now;
     }
 
     animationId = requestAnimationFrame(gameLoop);
@@ -295,6 +310,9 @@
         hearts.splice(i, 1);
       }
     }
+
+    // 檢查倒數計時
+    checkTimer();
   }
 
   // ===== 繪製 =====
@@ -571,6 +589,35 @@
       ctx.font = `${heart.size}px serif`;
       ctx.fillText('❤', heart.x, heart.y);
     });
+  }
+
+  // ===== 倒數計時 =====
+  function updateTimerDisplay() {
+    const elapsed = (Date.now() - lastTimeUpdate) / 1000;
+    timeRemaining = Math.max(0, Math.ceil(timeLimit - elapsed));
+    const hudTimer = document.getElementById('hud-timer');
+    if (hudTimer) {
+      hudTimer.textContent = `⏱ ${timeRemaining}s`;
+      // 最後 5 秒變色
+      if (timeRemaining <= 5) {
+        hudTimer.style.color = '#ff4444';
+        hudTimer.style.animation = 'pulse 0.5s ease-in-out infinite';
+      } else {
+        hudTimer.style.color = '#ffd700';
+        hudTimer.style.animation = 'none';
+      }
+    }
+  }
+
+  function checkTimer() {
+    const elapsed = (Date.now() - lastTimeUpdate) / 1000;
+    const remaining = Math.max(0, Math.ceil(timeLimit - elapsed));
+    if (remaining <= 0) {
+      timeRemaining = 0;
+      gameOver();
+      return;
+    }
+    timeRemaining = remaining;
   }
 
   // ===== 碰撞檢測 =====

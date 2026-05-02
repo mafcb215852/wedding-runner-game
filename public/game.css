@@ -128,9 +128,9 @@ body {
   pointer-events: none;
 }
 
-#hud-score, #hud-best {
+#hud-score, #hud-best, #hud-timer {
   background: rgba(0,0,0,0.6);
-  color: white;
+  color: #ffd700;
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.85em;
