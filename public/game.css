@@ -209,7 +209,7 @@ body {
     justify-content: center;
     gap: 8px;
   }
-  #hud-score, #hud-best {
+  #hud-score, #hud-best, #hud-timer {
     font-size: 0.75em;
     padding: 3px 8px;
   }
