@@ -190,6 +190,7 @@
 
     // 重置倒數計時
     timeRemaining = timeLimit;
+    gameStartTime = Date.now();
     lastTimeUpdate = Date.now();
   }
 
@@ -592,8 +593,10 @@
   }
 
   // ===== 倒數計時 =====
+  let gameStartTime = 0;
+
   function updateTimerDisplay() {
-    const elapsed = (Date.now() - lastTimeUpdate) / 1000;
+    const elapsed = (Date.now() - gameStartTime) / 1000;
     timeRemaining = Math.max(0, Math.ceil(timeLimit - elapsed));
     const hudTimer = document.getElementById('hud-timer');
     if (hudTimer) {
