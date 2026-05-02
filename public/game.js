@@ -209,7 +209,6 @@
 
     // 每 100ms 更新倒數計時 HUD
     if (now - lastTimeUpdate >= 100) {
-      console.log('[Timer] Condition met: now=' + now + ', lastTimeUpdate=' + lastTimeUpdate + ', diff=' + (now - lastTimeUpdate));
       updateTimerDisplay();
       lastTimeUpdate = now;
     }
@@ -598,17 +597,26 @@
     timeRemaining = Math.max(0, Math.ceil(timeLimit - elapsed));
     const hudTimer = document.getElementById('hud-timer');
     if (hudTimer) {
-      hudTimer.textContent = `⏱ ${timeRemaining}s`;
-      // 最後 5 秒變色
-      if (timeRemaining <= 5) {
-        hudTimer.style.color = '#ff4444';
-        hudTimer.style.animation = 'pulse 0.5s ease-in-out infinite';
-      } else {
-        hudTimer.style.color = '#ffd700';
-        hudTimer.style.animation = 'none';
+      const timerText = hudTimer.querySelector('.timer-text');
+      if (timerText) {
+        timerText.textContent = `⏱ ${timeRemaining}s`;
+      }
+      const timerBarFill = hudTimer.querySelector('.timer-bar-fill');
+      if (timerBarFill) {
+        const percent = (timeRemaining / timeLimit * 100);
+        timerBarFill.style.width = percent + '%';
+        // 最後 5 秒變色
+        if (timeRemaining <= 5) {
+          timerText.style.color = '#ff4444';
+          timerText.style.animation = 'pulse 0.5s ease-in-out infinite';
+          timerBarFill.style.background = '#ff4444';
+        } else {
+          timerText.style.color = '#ffd700';
+          timerText.style.animation = 'none';
+          timerBarFill.style.background = 'linear-gradient(90deg, #ffd700, #ff6b6b)';
+        }
       }
     }
-    console.log('[Timer] elapsed=' + elapsed.toFixed(2) + ', remaining=' + timeRemaining);
   }
 
   function checkTimer() {
