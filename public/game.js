@@ -209,6 +209,7 @@
 
     // 每 100ms 更新倒數計時 HUD
     if (now - lastTimeUpdate >= 100) {
+      console.log('[Timer] Condition met: now=' + now + ', lastTimeUpdate=' + lastTimeUpdate + ', diff=' + (now - lastTimeUpdate));
       updateTimerDisplay();
       lastTimeUpdate = now;
     }
@@ -607,6 +608,7 @@
         hudTimer.style.animation = 'none';
       }
     }
+    console.log('[Timer] elapsed=' + elapsed.toFixed(2) + ', remaining=' + timeRemaining);
   }
 
   function checkTimer() {
